@@ -1,0 +1,30 @@
+{
+  "name": "cliqueti/filemanager",
+  "description": "File manager abstraction component.",
+  "keywords": [
+    "Cliqueti",
+    "Clique-Ti",
+    "paulobrand",
+    "file manager",
+    "filemanager"
+  ],
+  "homepage": "http://www.cliqueti.com.br",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Paulo",
+      "email": "paulo@cliqueti.com.br"
+    }
+  ],
+  "require": {
+    "php": "^7.2",
+    "ext-pdo": "*",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "CliqueTI\\FileManager\\": "source"
+    }
+  }
+}
