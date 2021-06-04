@@ -27,7 +27,10 @@ class File extends FileManager {
         try {
             $file = (empty($file)?"":($file[0] == "/" ? $file : "/{$file}"));
             $file = str_replace('//','/',$this->getPath().$file);
-            return (file_get_contents($file)??null);
+            if(file_exists($file)){
+                return (file_get_contents($file)??null);
+            }
+            return null;
         } catch (Exception $exception) {
             $this->fail($exception);
             return null;
