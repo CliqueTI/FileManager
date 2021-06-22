@@ -30,16 +30,16 @@ abstract class FileManager {
      * FileManager constructor.
      * @param string|null $path
      */
-    public function __construct(string $path=null) {
-        $this->path = $this->filter($path);
+    public function __construct(string $path=null, string $dirPermission="0777") {
+        $this->path = $this->checkPath($this->filter($path), $dirPermission);
     }
 
     /**
      * @param string|null $path
      * @return $this
      */
-    protected function path(string $path=null):FileManager {
-        $this->path = $this->filter($path);
+    protected function path(string $path=null, string $dirPermission="0777"):FileManager {
+        $this->path = $this->checkPath($this->filter($path), $dirPermission);
         return $this;
     }
 
@@ -81,6 +81,18 @@ abstract class FileManager {
     protected function close():FileManager {
         fclose($this->handle);
         return $this;
+    }
+
+    /**
+     * @param string|null $path
+     * @param string $mode
+     * @return string|null
+     */
+    public function checkPath(string $path=null, string $mode="0777"):?string {
+        if(!is_dir($path)){
+            mkdir($path, $mode);
+        }
+        return $path;
     }
 
     /**
